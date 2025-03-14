@@ -1,35 +1,78 @@
+
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { ToDoItem } from './Components/ToDoItem';
+import { AddTodo } from './Components/AddTodo';
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const initialTodos = [
+    {id:1,text:"Learn React"},
+    {id:2,text:"Create Todo App"},
+    {id:3,text:"Create Deploy Project"},
+  ];
+  const [todos, setTodos] = useState(initialTodos);
+  const [theme,setTheme] = useState(getInitialTheme());
+
+  function getInitialTheme(){
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme:dark)").matches;
+    if(savedTheme){
+      return savedTheme
+    }else if(prefersDark){
+      return "dark"
+    }else{
+      const hours = new Date().getHours();
+      return hours < 6 || hours >= 21 ? "dark" : "light";
+    }
+  }
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === "light" ? "dark" : "light";
+      localStorage.setItem("theme", newTheme);
+      return newTheme
+    });
+  };
+
+  const onAdd = (text) => {
+    const newTodo = {
+      id: Date.now(),
+      text,
+    }
+    setTodos([...todos,newTodo]);
+  }
+ 
+  const onDelette = (id) =>{
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id))
+  }
 
   return (
-    <>
+    <div data-theme={theme} className='flex flex-col min-h-screen justify-center items-center bg-page-light dark:bg-page-dark p-24'>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <div>
+          <button onClick={toggleTheme}>
+            <div>Change Theme</div>
+          </button>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div>
+        <h1>My todo App</h1>
+        <AddTodo onAdd={onAdd}/>
+        <div>Component to create tasks</div>
+        <div>
+          {todos.map((todo) => (
+            <ToDoItem key={todo.id} todo={todo} onDelette={onDelette}/>
+            
+          ))}
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+     
+      </div>
   )
 }
+
+
 
 export default App

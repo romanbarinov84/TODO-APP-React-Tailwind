@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
 
 export default defineConfig({
-  plugins: [react()],
-  base: "/TODO-APP-React-Tailwind/", 
+  plugins: [tailwindcss(), react()],
+  base: "/TODO-APP-React-Tailwind/",
 })

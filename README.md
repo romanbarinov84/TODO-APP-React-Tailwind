@@ -1,12 +1,18 @@
-# React + Vite
+# TODO-APP-React-Tailwind
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+(https://romanbarinov84.github.io/TODO-APP-React-Tailwind/)
 
-Currently, two official plugins are available:
+## Описание
+Это проект туду-листа, созданный с использованием **React**, **Tailwind CSS** и **Vite**. В проекте реализована возможность добавления задач, их удаления, а также переключения между светлой и темной темами.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Функциональность
+- Добавление новых задач в список.
+- Удаление задач.
+- Переключение между светлой и темной темами с использованием локального хранилища (localStorage).
+- Адаптивный дизайн с использованием Tailwind CSS.
+- Быстрое и простое развертывание с помощью Vite.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Технологии
+- **React** — библиотека для построения пользовательских интерфейсов.
+- **Tailwind CSS** — утилитарный CSS-фреймворк для быстрого создания пользовательских интерфейсов.
+- **Vite** — современный сборщик для разработки React-приложений.
